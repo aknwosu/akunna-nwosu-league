@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { getDoctors } from '../../actions/apiCalls'
+import CardView from './CardView'
 class DoctorList extends Component {
   render() {
     console.log(this.props)
+    const { doctorsList } = this.props
     return (
+      
       <div>
-        <button onClick={() => this.props.dispatchGetDoctors()}>GET</button>
+        {doctorsList.map(doctorData => 
+          <CardView doctorData={doctorData} />
+        )}
       </div>
     )
   }
@@ -22,4 +27,4 @@ const mapStateToProps = state => {
     doctorsList: state.doctors.doctorsList
   }
 }
-export default connect (mapStateToProps, mapDispatchToProps)(DoctorList)
+export default connect(mapStateToProps, mapDispatchToProps)(DoctorList)
