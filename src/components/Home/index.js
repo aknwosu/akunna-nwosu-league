@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import DoctorList from '../DoctorList'
 import { getDoctors } from '../../actions/apiCalls'
 
 class Home extends Component {
@@ -12,9 +14,9 @@ class Home extends Component {
 
 	render() {
 		return (
-			<div>
-				Home
-			</div>
+			<Container>
+				<DoctorList />
+			</Container>
 		)
 	}
 }
@@ -25,3 +27,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	dispatchGetDoctors: bindActionCreators(getDoctors, dispatch),
 })
 export default connect(null, mapDispatchToProps)(Home)
+
+const Container = styled.div`
+	max-width: 940px;
+	margin: 0 auto;
+`
