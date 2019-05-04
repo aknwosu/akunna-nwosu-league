@@ -60,7 +60,6 @@ class Home extends Component {
 	renderMobileViewActiveDoctor = () => {
 		const { activeDoctor, isMobileView } = this.props
 		const { showingAllInsurances } = this.state
-		console.log(isMobileView, 'isMobileview')
 		if (activeDoctor.uid) {
 			return (
 				<Modal handleClose={this.closeModal}>
@@ -74,8 +73,6 @@ class Home extends Component {
 	render() {
 		const { searchText } = this.state
 		const { isMobileView } = this.props
-		console.log(isMobileView, 'render==isMobileview')
-
 		return (
 			<Container>
 				<SearchBar
@@ -116,4 +113,8 @@ const Content = styled.div`
 	padding-top: 70px;
 `
 const Close = styled.div`
+	font-size: 30px;
+	position: absolute;
+	right: 20px;
+	font-weight: bold;
 `

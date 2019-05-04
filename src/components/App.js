@@ -7,7 +7,7 @@ import { onResizeScreen } from '../actions/appstate'
 import Home from './Home'
 
 
-class App extends Component {
+export class App extends Component {
 	componentDidMount() {
 		window.addEventListener('resize', this.onResize)
 		this.onResize()
@@ -29,7 +29,8 @@ class App extends Component {
 App.propTypes = {
 	dispatchOnResizeScreen: PropTypes.func.isRequired,
 }
-const mapDispatchToProps = (dispatch, ownProps) => ({
+
+export const mapDispatchToProps = (dispatch, ownProps) => ({
 	dispatchOnResizeScreen: bindActionCreators(onResizeScreen, dispatch)
 })
 export default connect(null, mapDispatchToProps)(App)

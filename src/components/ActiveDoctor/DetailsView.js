@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import AvailbleIcon from '../../assets/Available.svg'
 import UnavailbleIcon from '../../assets/Unavailable.svg'
 import LocationIcon from '../../assets/Location.svg'
-
+import OfficePhone from '../../assets/office-telephone.svg'
 
 export const DetailsView = (props) => {
 	const {
@@ -29,6 +29,8 @@ export const DetailsView = (props) => {
 					<p>{practice.name}</p>
 					{practice.distance && <SubText>{`${practice.distance.toFixed(2)} miles away`}</SubText>}
 					<p><InfoIcon src={LocationIcon} />Address: {street}, {street2 && `${street2},`} { `${city}, ${state_long}.`}</p>
+					{practice.phones.map(phone => (phone.type === 'landline' && (
+						<p><InfoIcon src={OfficePhone} />{phone.number}</p>)))}
 					{practice.accepts_new_patients ? <p><InfoIcon src={AvailbleIcon} />Currently accepting new patients</p> : <p><InfoIcon src={UnavailbleIcon} /> Not currently accepting new patients</p>}
 				</Card>
 			)
@@ -161,7 +163,7 @@ const CardList = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	margin-bottom: 40px;
-	max-height: 250px;
+	max-height: 270px;
 	overflow: scroll;
 	margin-top: 15px;
 `
@@ -179,8 +181,8 @@ const CardSm = styled.div`
 `
 const InfoIcon = styled.span`
 	background: ${({ src }) => `url(${src})`};
-	width: 8px;
-	height: 11px;
+	width: 11px;
+	height: 13px;
 	background-size: contain;
 	display: -webkit-inline-box;
 	margin-right: 10px;

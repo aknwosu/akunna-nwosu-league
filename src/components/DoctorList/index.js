@@ -28,6 +28,8 @@ class DoctorsList extends Component {
 DoctorsList.propTypes = {
 	doctorsList: PropTypes.array.isRequired,
 	dispatchSetActiveDoctor: PropTypes.func.isRequired,
+	activeDoctor: PropTypes.object,
+	isMobileView: PropTypes.func.isRequired,
 
 }
 const mapStateToProps = state => ({
