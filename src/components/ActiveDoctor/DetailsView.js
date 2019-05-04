@@ -10,6 +10,7 @@ export const DetailsView = (props) => {
 	const {
 		showingAllInsurances,
 		updateShowingAll,
+		isMobileView,
 		activeDoctor: {
 			practices, specialties, insurances, profile: {
 				image_url, last_name, first_name, bio, title
@@ -26,7 +27,7 @@ export const DetailsView = (props) => {
 			return (
 				<Card key={practice.uid}>
 					<p>{practice.name}</p>
-					{/* <SubText>{`${practice.distance.toFixed(2)} miles away`}</SubText> */}
+					{practice.distance && <SubText>{`${practice.distance.toFixed(2)} miles away`}</SubText>}
 					<p><InfoIcon src={LocationIcon} />Address: {street}, {street2 && `${street2},`} { `${city}, ${state_long}.`}</p>
 					{practice.accepts_new_patients ? <p><InfoIcon src={AvailbleIcon} />Currently accepting new patients</p> : <p><InfoIcon src={UnavailbleIcon} /> Not currently accepting new patients</p>}
 				</Card>
@@ -44,12 +45,16 @@ export const DetailsView = (props) => {
 		showingAllInsurances ? displayedInsurances = insurances : displayedInsurances = insurances.slice(0, 6)
 		return (
 			displayedInsurances.map(insurance => (
-				<CardSm key={insurance.uid}>{insurance.insurance_plan.name}</CardSm>
+				<CardSm
+					key={insurance.uid}
+					isMobileView={isMobileView}
+				>{insurance.insurance_plan.name}
+				</CardSm>
 			))
 		)
 	}
 	return (
-		<Container>
+		<Container isMobileView={isMobileView}>
 			<Profile>
 				<Avatar src={image_url} />
 				<Title>{first_name} {last_name}, {title}</Title>
@@ -81,13 +86,15 @@ DetailsView.propTypes = {
 	activeDoctor: PropTypes.object,
 	showingAllInsurances: PropTypes.bool.isRequired,
 	updateShowingAll: PropTypes.func.isRequired,
+	isMobileView: PropTypes.bool.isRequired
 }
 export default DetailsView
 
 const Container = styled.div`
 	background-color: #FFF;
 	margin: 20px auto;
-	width: 678px;
+	width: auto
+	max-width: 678px;
 	padding: 15px;
 `
 
@@ -159,7 +166,7 @@ const CardList = styled.div`
 	margin-top: 15px;
 `
 const CardSm = styled.div`
-	width: 45%;
+	width: ${({ isMobileView }) => (isMobileView ? '100%' : '45%')};
 	box-shadow: 0px 0px 5px #DAECEC;
 	height: 32px;
 	font-size: 14px;

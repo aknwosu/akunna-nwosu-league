@@ -59,6 +59,7 @@ class ActiveDoctor extends Component {
 						activeDoctor={activeDoctor}
 						updateShowingAll={this.updateShowingAll}
 						showingAllInsurances={showingAllInsurances}
+						isMobileView={isMobileView}
 					/>
 				)}
 			</Container>
@@ -80,8 +81,10 @@ const Container = styled.div`
 	width: 100%;
 	margin-left: 400px;
 	height: calc(100vh - 70px);
+	overflow: scroll;
 	${({ isMobileView }) => isMobileView && `
 		margin-left: 0;
-		height: 100vh
+		height: 100vh;
+		width: 100vw;
 	`}
 `

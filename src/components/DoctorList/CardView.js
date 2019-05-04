@@ -10,8 +10,10 @@ const CardView = (props) => {
 			}
 		}
 	} = props
-	const sortedPractices = practices.length > 1 ? practices.sort((a, b) => a.distance - b.distance) : practices
-
+	let sortedPractices;
+	if (practices[0].distance) {
+		sortedPractices = practices.length > 1 ? practices.sort((a, b) => a.distance - b.distance) : practices
+	}
 	return (
 		<Container
 			onClick={() => dispatchSetActiveDoctor(doctorData)}
@@ -20,7 +22,7 @@ const CardView = (props) => {
 			<Avatar src={image_url} alt="" />
 			<Info>
 				<Title>{first_name} {last_name}</Title>
-				<SubText>{`${sortedPractices[0].distance.toFixed(2)} miles away`}</SubText>
+				{sortedPractices && <SubText>{`${sortedPractices[0].distance.toFixed(2)} miles away`}</SubText>}
 				<ListItem>
 					{specialties.map(specialty => (
 						<Item key={specialty.uid}>{specialty.actor}</Item>
