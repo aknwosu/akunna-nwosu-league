@@ -6,10 +6,10 @@ import styled from 'styled-components'
 import { getDoctors, setActiveDoctor } from '../../actions/doctors'
 import CardView from './CardView'
 
-class DoctorsList extends Component {
+export class DoctorsList extends Component {
 	render() {
 		const {
-			doctorsList, dispatchSetActiveDoctor, activeDoctor, isMobileView, loading, doctorsListLoading, getDoctorsError
+			doctorsList, dispatchSetActiveDoctor, activeDoctor, isMobileView, doctorsListLoading, getDoctorsError
 		} = this.props
 		return (
 			<Container isMobileView={isMobileView}>
@@ -34,7 +34,6 @@ DoctorsList.propTypes = {
 	dispatchSetActiveDoctor: PropTypes.func.isRequired,
 	activeDoctor: PropTypes.object,
 	isMobileView: PropTypes.bool.isRequired,
-	loading: PropTypes.bool,
 	doctorsListLoading: PropTypes.bool,
 	getDoctorsError: PropTypes.string
 
@@ -63,7 +62,7 @@ const Container = styled.div`
 	height: calc(100vh - 70px);
 	overflow-y: scroll;
 `
-const NoDataText = styled.div`
+export const NoDataText = styled.div`
 	font-size: 30px;
 	color: #72aca9;
 	`

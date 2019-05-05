@@ -6,10 +6,8 @@ import { onResizeScreen } from '../actions/appstate'
 
 
 it('renders without crashing', () => {
-	const div = document.createElement('div');
 	const dispatchOnResizeScreen = jest.fn();
 	shallow(<App dispatchOnResizeScreen={dispatchOnResizeScreen} />);
-	// ReactDOM.unmountComponentAtNode(div);
 });
 describe('mapDispatchToProps', () => {
 	it('should dispatch dispatchOnResizeScreen when screen is resized', () => {

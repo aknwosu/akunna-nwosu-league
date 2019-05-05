@@ -2,13 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Modal from '../../ui/ModalBase'
 import SearchState from '../../assets/search_wctu.svg'
 
 // eslint-disable-next-line import/no-named-as-default
 import DetailsView from './DetailsView'
 
-class ActiveDoctor extends Component {
+export class ActiveDoctor extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -70,7 +69,7 @@ const mapStateToProps = state => ({
 })
 export default connect(mapStateToProps)(ActiveDoctor)
 
-const Container = styled.div`
+export const Container = styled.div`
 	background: #FFFFFF;
 	width: 100%;
 	margin-left: 400px;
@@ -97,7 +96,7 @@ const NoDataText = styled.div`
 	font-size: 30px;
 	color: #72aca9;
 `
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
   align-items: center;	

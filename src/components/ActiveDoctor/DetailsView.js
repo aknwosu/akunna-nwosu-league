@@ -95,7 +95,7 @@ export default DetailsView
 const Container = styled.div`
 	background-color: #FFF;
 	margin: 20px auto;
-	width: auto
+	width: auto;
 	max-width: 678px;
 	padding: 15px;
 `

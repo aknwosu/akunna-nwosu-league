@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 import SearchIcon from '../../assets/Search.svg'
 
 
-const SearchBar = (props) => {
+export const SearchBar = (props) => {
 	const {
 		searchText, onSearch, updateSearch, isMobileView
 	} = props
 	return (
 		<Container>
 			<InputWrapper isMobileView={isMobileView}>
-				<CTA onClick={() => onSearch('userLocation')}>Use your location</CTA>
+				<CTA className="userLocation" onClick={() => onSearch('userLocation')}>Use your location</CTA>
 				<Input
 					autoFocus
 					name="locationSearch"
@@ -42,8 +42,7 @@ const Container = styled.div`
   align-items: center;
   box-shadow: 0px 3px 24px #DAECEC;
 `
-
-const Input = styled.input`
+export const Input = styled.input`
   width: ${({ isMobileView }) => (isMobileView ? '150px' : '335px')};
   height: 28px;
   max-width: 100%;
@@ -63,7 +62,7 @@ const InputWrapper = styled.div`
   background-color: #FFFFFF;
   padding-left: ${({ isMobileView }) => (isMobileView ? '10px' : '80px')};
 `
-const CTASearch = styled.div`
+export const CTASearch = styled.div`
   background: url(${SearchIcon});
 	position: absolute;
   background-position: center;
@@ -75,7 +74,7 @@ const CTASearch = styled.div`
 
 
 `
-const CTA = styled.div`
+export const CTA = styled.div`
   width: 110px;
   height: 32px;
   background-color: #59A49F;

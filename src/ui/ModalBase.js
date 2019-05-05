@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const modalRoot = document.getElementById('modal-root')
-class Modal extends React.Component {
+export class Modal extends React.Component {
 	handleModalClick = (event) => {
 		event.stopPropagation()
 	}

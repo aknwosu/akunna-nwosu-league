@@ -1,15 +1,16 @@
+/* eslint-disable import/no-named-as-default */
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import DoctorList from '../DoctorList'
+import DoctorList from '../DoctorsList'
 import ActiveDoctor from '../ActiveDoctor'
 import { getDoctors, resetActiveDoctor } from '../../actions/doctors'
-import SearchBar from './SearchBar'
+import SearchBar from '../SearchBar'
 import Modal from '../../ui/ModalBase'
 
-class Home extends Component {
+export class Home extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -37,7 +38,6 @@ class Home extends Component {
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
 				const { latitude, longitude } = position.coords;
-
 				this.setState({
 					userLocation: { latitude: latitude.toFixed(3), longitude: longitude.toFixed(3) },
 					searchText: `${latitude.toFixed(3)},${longitude.toFixed(3)},100`
@@ -55,7 +55,6 @@ class Home extends Component {
 	// eslint-disable-next-line consistent-return
 	renderMobileViewActiveDoctor = () => {
 		const { activeDoctor, isMobileView } = this.props
-		const { showingAllInsurances } = this.state
 		if (activeDoctor.uid) {
 			return (
 				<Modal handleClose={this.closeModal}>
@@ -92,11 +91,11 @@ Home.propTypes = {
 	dispatchResetActiveDoctor: PropTypes.func.isRequired,
 	activeDoctor: PropTypes.object
 }
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
 	isMobileView: state.appstate.isMobileView,
 	activeDoctor: state.doctors.activeDoctor,
 })
-const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
 	dispatchGetDoctors: bindActionCreators(getDoctors, dispatch),
 	dispatchResetActiveDoctor: bindActionCreators(resetActiveDoctor, dispatch),
 })

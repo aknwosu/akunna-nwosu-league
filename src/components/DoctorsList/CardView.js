@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import OfficePhone from '../../assets/office-telephone.svg'
 
-const CardView = (props) => {
+export const CardView = (props) => {
 	const {
 		isActive, dispatchSetActiveDoctor, isMobileView, doctorData, doctorData: {
 			specialties, practices, profile: {
@@ -59,8 +59,8 @@ CardView.propTypes = {
 	isMobileView: PropTypes.bool,
 }
 export default CardView
-const Container = styled.div`
-	background-color: ${({ theme }) => theme.color.white};
+export const Container = styled.div`
+	background-color: #FFFFFF;
 	margin: 10px auto;
   display: flex;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
