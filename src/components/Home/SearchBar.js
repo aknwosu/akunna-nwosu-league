@@ -5,21 +5,30 @@ import SearchIcon from '../../assets/Search.svg'
 
 
 const SearchBar = (props) => {
-	const { searchText, onSearch, updateSearch } = props
+	const {
+		searchText, onSearch, updateSearch, isMobileView
+	} = props
 	return (
 		<Container>
-			<InputWrapper>
+			<InputWrapper isMobileView={isMobileView}>
 				<CTA onClick={() => onSearch('userLocation')}>Use your location</CTA>
 				<Input
 					autoFocus
 					name="locationSearch"
 					value={searchText}
 					onChange={updateSearch}
+					isMobileView={isMobileView}
 				/>
-				<CTASearch onClick={() => onSearch('userInput')} />
+				<CTASearch onClick={() => onSearch('userInput')} isMobileView={isMobileView} />
 			</InputWrapper>
 		</Container>
 	)
+}
+SearchBar.propTypes = {
+	searchText: PropTypes.string,
+	updateSearch: PropTypes.func.isRequired,
+	onSearch: PropTypes.func.isRequired,
+	isMobileView: PropTypes.bool.isRequired
 }
 export default SearchBar
 
@@ -35,7 +44,7 @@ const Container = styled.div`
 `
 
 const Input = styled.input`
-  width: 335px;
+  width: ${({ isMobileView }) => (isMobileView ? '150px' : '335px')};
   height: 28px;
   max-width: 100%;
   border: 2px solid #59A49F;
@@ -52,7 +61,7 @@ const InputWrapper = styled.div`
   align-items: center;
   width: 100%;
   background-color: #FFFFFF;
-  padding-left: 80px;
+  padding-left: ${({ isMobileView }) => (isMobileView ? '10px' : '80px')};
 `
 const CTASearch = styled.div`
   background: url(${SearchIcon});
@@ -62,7 +71,8 @@ const CTASearch = styled.div`
   height: 22px;
   background-repeat: no-repeat;
   top: 23px;
-  left: 582px;
+  left: ${({ isMobileView }) => (isMobileView ? '330px' : '582px;')};
+
 
 `
 const CTA = styled.div`
@@ -76,4 +86,5 @@ const CTA = styled.div`
   justify-content: center;
   align-items: center;
   color: white;
+  cursor: pointer;
 `

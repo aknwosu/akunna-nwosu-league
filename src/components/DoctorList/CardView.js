@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -42,8 +43,8 @@ const CardView = (props) => {
 				</ListItem>
 				<ListItem>
 					<InfoIcon src={OfficePhone} />
-					{landlines.map(phone => (
-						<Item>{phone.number} </Item>
+					{landlines.map((phone, index) => (
+						<Item key={`${index}`}>{phone.number} </Item>
 					))
 					}
 				</ListItem>
@@ -54,8 +55,8 @@ const CardView = (props) => {
 CardView.propTypes = {
 	doctorData: PropTypes.object.isRequired,
 	dispatchSetActiveDoctor: PropTypes.func.isRequired,
-	isActive: PropTypes.bool.isRequired,
-	isMobileView: PropTypes.bool.isRequired,
+	isActive: PropTypes.bool,
+	isMobileView: PropTypes.bool,
 }
 export default CardView
 const Container = styled.div`

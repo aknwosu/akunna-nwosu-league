@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { log } from 'util';
 import DoctorList from '../DoctorList'
 import ActiveDoctor from '../ActiveDoctor'
-import { getDoctors, resetActiveDoctor } from '../../actions/apiCalls'
+import { getDoctors, resetActiveDoctor } from '../../actions/doctors'
 import SearchBar from './SearchBar'
 import Modal from '../../ui/ModalBase'
 
@@ -15,7 +14,6 @@ class Home extends Component {
 		super(props)
 		this.state = {
 			searchText: '',
-			loading: false,
 			userLocation: { latitude: null, longitude: null }
 		}
 	}
@@ -29,26 +27,23 @@ class Home extends Component {
 		this.setState({ searchText: event.target.value })
 	}
 
+	// eslint-disable-next-line consistent-return
 	onSearch = (location) => {
 		const { searchText, userLocation } = this.state
 		const { dispatchGetDoctors } = this.props
 		if (location === 'userInput') {
 			return dispatchGetDoctors(searchText)
 		}
-		this.setState({ loading: true })
 		navigator.geolocation.getCurrentPosition(
 			(position) => {
 				const { latitude, longitude } = position.coords;
 
 				this.setState({
 					userLocation: { latitude: latitude.toFixed(3), longitude: longitude.toFixed(3) },
-					loading: false
-				});
+					searchText: `${latitude.toFixed(3)},${longitude.toFixed(3)},100`
+				})
 				return dispatchGetDoctors(`${userLocation.latitude},${userLocation.longitude},100`)
 			},
-			() => {
-				this.setState({ loading: false });
-			}
 		);
 	}
 
@@ -57,6 +52,7 @@ class Home extends Component {
 		dispatchResetActiveDoctor()
 	}
 
+	// eslint-disable-next-line consistent-return
 	renderMobileViewActiveDoctor = () => {
 		const { activeDoctor, isMobileView } = this.props
 		const { showingAllInsurances } = this.state
@@ -71,7 +67,7 @@ class Home extends Component {
 	}
 
 	render() {
-		const { searchText } = this.state
+		const { searchText, loading } = this.state
 		const { isMobileView } = this.props
 		return (
 			<Container>
@@ -79,9 +75,10 @@ class Home extends Component {
 					searchText={searchText}
 					updateSearch={this.updateSearch}
 					onSearch={this.onSearch}
+					isMobileView={isMobileView}
 				/>
 				<Content>
-					<DoctorList />
+					<DoctorList loading={loading} />
 					{!isMobileView && <ActiveDoctor />}
 					{isMobileView && this.renderMobileViewActiveDoctor()}
 				</Content>
@@ -93,6 +90,7 @@ Home.propTypes = {
 	dispatchGetDoctors: PropTypes.func.isRequired,
 	isMobileView: PropTypes.bool.isRequired,
 	dispatchResetActiveDoctor: PropTypes.func.isRequired,
+	activeDoctor: PropTypes.object
 }
 const mapStateToProps = state => ({
 	isMobileView: state.appstate.isMobileView,
@@ -106,6 +104,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
 const Container = styled.div`
 	margin: 0 auto;
+	min-width: 370px;
 
 `
 const Content = styled.div`
