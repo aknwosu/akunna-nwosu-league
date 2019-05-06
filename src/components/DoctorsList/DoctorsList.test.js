@@ -9,10 +9,12 @@ describe('DoctorsList', () => {
 	const baseProps = {
 		doctorsList: [],
 		dispatchSetActiveDoctor: jest.fn(),
-		activeDoctor: {},
+		activeDoctor: { practices: [] },
 		isMobileView: false,
 		doctorsListLoading: false,
-		getDoctorsError: ''
+		getDoctorsError: '',
+		dispatchGetDoctors: jest.fn(),
+		currentPage: 1
 	};
 
 	describe('doctors', () => {

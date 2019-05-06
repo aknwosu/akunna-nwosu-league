@@ -76,9 +76,8 @@ export const CTASearch = styled.div`
   height: 22px;
   background-repeat: no-repeat;
   top: 23px;
-  left: ${({ isMobileView }) => (isMobileView ? '330px' : '582px;')};
-
-
+  left: ${({ isMobileView }) => (isMobileView ? '330px' : '582px')};
+  cursor: pointer;
 `
 export const CTA = styled.div`
   width: 110px;

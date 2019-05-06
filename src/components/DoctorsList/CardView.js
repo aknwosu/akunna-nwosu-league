@@ -30,6 +30,11 @@ export const CardView = (props) => {
 
 	let landlines = phones.filter(phone => phone.type === 'landline')
 	landlines = landlines.slice(0, 3)
+	const {
+		visit_address: {
+			street, street2, city, state_long
+		}
+	} = practices[0]
 	return (
 		<Container
 			onClick={() => dispatchSetActiveDoctor(doctorData)}
@@ -38,9 +43,11 @@ export const CardView = (props) => {
 			<Avatar src={image_url} alt={slug} />
 			<Info>
 				<Title>{first_name} {last_name}</Title>
-				{sortedPractices && (
+				{sortedPractices ? (
 					<SubText>{`${sortedPractices[0].distance.toFixed(2)} miles away`}</SubText>
-				)}
+				)
+					: <SubText>{street}, {street2 && `${street2},`} {`${city}, ${state_long}.`}</SubText>
+				}
 				<ListItem>
 					{doctorSpecialties.join(', ')}
 				</ListItem>
@@ -96,7 +103,7 @@ const Info = styled.div`
 `
 const SubText = styled.div`
 	color: #909090;
-	font-size: 14px;
+	font-size: 13px;
 `
 const InfoIcon = styled.span`
 	background: ${({ src }) => `url(${src})`};
