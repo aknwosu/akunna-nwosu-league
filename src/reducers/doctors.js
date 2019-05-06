@@ -2,10 +2,13 @@ const initialState = {
 	doctorsList: [],
 	doctorsListLoading: false,
 	activeDoctor: {},
-	getDoctorsError: ''
+	getDoctorsError: '',
+	total: 0,
+	currentPage: 1,
+	currentLocation: ''
 }
 
-export default function searchReducer(state = initialState, action) {
+export default function doctorsReducer(state = initialState, action) {
 	switch (action.type) {
 	case 'GET_DOCTORS_SUCCESS': {
 		return {
@@ -14,6 +17,9 @@ export default function searchReducer(state = initialState, action) {
 			activeDoctor: {},
 			getDoctorsError: '',
 			doctorsListLoading: false,
+			currentLocation: action.payload.currentLocation,
+			total: action.payload.meta.total,
+			currentPage: (action.payload.meta.skip + 10) / 10
 		}
 	}
 	case 'GET_DOCTORS_REQUEST': {

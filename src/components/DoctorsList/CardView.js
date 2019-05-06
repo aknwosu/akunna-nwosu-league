@@ -6,9 +6,9 @@ import OfficePhone from '../../assets/office-telephone.svg'
 
 export const CardView = (props) => {
 	const {
-		isActive, dispatchSetActiveDoctor, isMobileView, doctorData, doctorData: {
+		isActive, dispatchSetActiveDoctor, doctorData, doctorData: {
 			specialties, practices, profile: {
-				image_url, last_name, first_name, bio, slug
+				image_url, last_name, first_name, slug
 			}
 		}
 	} = props
@@ -21,6 +21,11 @@ export const CardView = (props) => {
 		practice.phones.map(phone => (
 			phones.push(phone)
 		))
+	))
+
+	const doctorSpecialties = []
+	specialties.map(specialty => (
+		doctorSpecialties.push(specialty.actor)
 	))
 
 	let landlines = phones.filter(phone => phone.type === 'landline')
@@ -37,9 +42,7 @@ export const CardView = (props) => {
 					<SubText>{`${sortedPractices[0].distance.toFixed(2)} miles away`}</SubText>
 				)}
 				<ListItem>
-					{specialties.map(specialty => (
-						<Item key={specialty.uid}>{specialty.actor}</Item>
-					))}
+					{doctorSpecialties.join(', ')}
 				</ListItem>
 				<ListItem>
 					<InfoIcon src={OfficePhone} />
@@ -56,7 +59,6 @@ CardView.propTypes = {
 	doctorData: PropTypes.object.isRequired,
 	dispatchSetActiveDoctor: PropTypes.func.isRequired,
 	isActive: PropTypes.bool,
-	isMobileView: PropTypes.bool,
 }
 export default CardView
 export const Container = styled.div`

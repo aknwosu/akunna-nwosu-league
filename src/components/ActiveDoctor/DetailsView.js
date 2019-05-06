@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -17,6 +18,11 @@ export const DetailsView = (props) => {
 			}
 		}
 	} = props
+	const doctorSpecialties = []
+	specialties.map(specialty => (
+		doctorSpecialties.push(specialty.actor)
+	))
+
 	const renderPractices = () => (
 		practices.map((practice) => {
 			const {
@@ -28,9 +34,9 @@ export const DetailsView = (props) => {
 				<Card key={practice.uid}>
 					<p>{practice.name}</p>
 					{practice.distance && <SubText>{`${practice.distance.toFixed(2)} miles away`}</SubText>}
-					<p><InfoIcon src={LocationIcon} />Address: {street}, {street2 && `${street2},`} { `${city}, ${state_long}.`}</p>
-					{practice.phones.map(phone => (phone.type === 'landline' && (
-						<p><InfoIcon src={OfficePhone} />{phone.number}</p>)))}
+					<p><InfoIcon src={LocationIcon} />Address: {street}, {street2 && `${street2},`} {`${city}, ${state_long}.`}</p>
+					{practice.phones.map((phone, index) => (phone.type === 'landline' && (
+						<p key={index}><InfoIcon src={OfficePhone} />{phone.number}</p>)))}
 					{practice.accepts_new_patients ? <p><InfoIcon src={AvailbleIcon} />Currently accepting new patients</p> : <p><InfoIcon src={UnavailbleIcon} /> Not currently accepting new patients</p>}
 				</Card>
 			)
@@ -46,9 +52,9 @@ export const DetailsView = (props) => {
 		let displayedInsurances;
 		showingAllInsurances ? displayedInsurances = insurances : displayedInsurances = insurances.slice(0, 6)
 		return (
-			displayedInsurances.map(insurance => (
+			displayedInsurances.map((insurance, index) => (
 				<CardSm
-					key={insurance.uid}
+					key={index}
 					isMobileView={isMobileView}
 				>{insurance.insurance_plan.name}
 				</CardSm>
@@ -61,9 +67,7 @@ export const DetailsView = (props) => {
 				<Avatar src={image_url} />
 				<Title>{first_name} {last_name}, {title}</Title>
 				<HelperText>
-					{specialties.map(specialty => (
-						<div key={specialty.uid}>{specialty.actor}</div>
-					))}
+					{doctorSpecialties.join(', ')}
 				</HelperText>
 				<div>{bio}</div>
 			</Profile>
@@ -120,7 +124,7 @@ const HelperText = styled.div`
 	align-items: center;
 	justify-content: center;
 	color: #C4C4C4;
-	font-size: 12px;
+	font-size: 13px;
 	margin-bottom: 15px;
 `
 const Profile = styled.div`

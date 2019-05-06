@@ -54,7 +54,7 @@ export class Home extends Component {
 
 	// eslint-disable-next-line consistent-return
 	renderMobileViewActiveDoctor = () => {
-		const { activeDoctor, isMobileView } = this.props
+		const { activeDoctor } = this.props
 		if (activeDoctor.uid) {
 			return (
 				<Modal handleClose={this.closeModal}>

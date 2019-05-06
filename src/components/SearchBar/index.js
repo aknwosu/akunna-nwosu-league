@@ -8,6 +8,11 @@ export const SearchBar = (props) => {
 	const {
 		searchText, onSearch, updateSearch, isMobileView
 	} = props
+	const onEnter = ({ key }) => {
+		if (key === 'Enter') {
+			onSearch('userInput')
+		}
+	}
 	return (
 		<Container>
 			<InputWrapper isMobileView={isMobileView}>
@@ -18,6 +23,7 @@ export const SearchBar = (props) => {
 					value={searchText}
 					onChange={updateSearch}
 					isMobileView={isMobileView}
+					onKeyPress={onEnter}
 				/>
 				<CTASearch onClick={() => onSearch('userInput')} isMobileView={isMobileView} />
 			</InputWrapper>
