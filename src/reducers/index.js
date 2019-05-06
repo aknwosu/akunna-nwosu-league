@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import searchResult from './search'
+import doctors from './doctors'
+import appstate from './appstate'
 
 export default combineReducers({
-  searchResult
+	doctors,
+	appstate
 })
