@@ -1,4 +1,4 @@
-# League Frontend Challenge
+# Better Doctor Frontend Implementation
 
 This a Javascript(React) implemented SPA that enables users get a list of doctors using their location or a value entered in the search bar.
 
