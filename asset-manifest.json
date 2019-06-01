@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/doctor-api-implementation/static/js/main.2264eb49.chunk.js",
+    "main.js.map": "/doctor-api-implementation/static/js/main.2264eb49.chunk.js.map",
+    "runtime~main.js": "/doctor-api-implementation/static/js/runtime~main.aae13ddb.js",
+    "runtime~main.js.map": "/doctor-api-implementation/static/js/runtime~main.aae13ddb.js.map",
+    "static/js/2.99df87d3.chunk.js": "/doctor-api-implementation/static/js/2.99df87d3.chunk.js",
+    "static/js/2.99df87d3.chunk.js.map": "/doctor-api-implementation/static/js/2.99df87d3.chunk.js.map",
+    "index.html": "/doctor-api-implementation/index.html",
+    "precache-manifest.4524645928d9083cee20a9a1e3b38074.js": "/doctor-api-implementation/precache-manifest.4524645928d9083cee20a9a1e3b38074.js",
+    "service-worker.js": "/doctor-api-implementation/service-worker.js",
+    "static/media/Available.svg": "/doctor-api-implementation/static/media/Available.fbd76058.svg",
+    "static/media/Location.svg": "/doctor-api-implementation/static/media/Location.89d5a9bd.svg",
+    "static/media/Search.svg": "/doctor-api-implementation/static/media/Search.93c34882.svg",
+    "static/media/Unavailable.svg": "/doctor-api-implementation/static/media/Unavailable.a28bdf5e.svg",
+    "static/media/office-telephone.svg": "/doctor-api-implementation/static/media/office-telephone.dd2c678b.svg",
+    "static/media/search_wctu.svg": "/doctor-api-implementation/static/media/search_wctu.6c7299c6.svg"
+  }
+}
