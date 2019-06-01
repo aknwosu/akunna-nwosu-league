@@ -2,7 +2,7 @@
     "name": "akunna-nwosu-frontend",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://aknwosu.github.io/doctor-api-implementation",
+    "homepage": "https://aknwosu.github.io/better-doctor",
     "dependencies": {
         "axios": "^0.18.0",
         "eslint-config-airbnb": "^17.1.0",
